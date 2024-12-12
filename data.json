@@ -1,3 +1,27 @@
 {
-    "devoirs": {}
+    "subjects": [
+        {
+            "id": 0,
+            "name": "Vie de classe",
+            "color": "red"
+        },
+        {
+            "id": 1,
+            "name": "Français",
+            "color": "antiquewhite"
+        },
+        {
+            "id": 2,
+            "name": "Maths",
+            "color": "deeppink"
+        }
+    ],
+    "homeworks": [
+        {
+            "id": "0193bc57-a12d-7470-9e82-d53a528b2fa3",
+            "subject_id": 2,
+            "date": "2024-12-16",
+            "description": "Faire les exercices 103 et 105 de la page 27"
+        }
+    ]
 }
