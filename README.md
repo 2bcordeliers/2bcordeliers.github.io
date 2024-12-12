@@ -1,1 +1,1 @@
-# 2bcordeliers.github.io
+# Site des 2B des Cordeliers
