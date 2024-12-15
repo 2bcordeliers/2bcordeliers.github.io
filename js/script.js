@@ -3,6 +3,11 @@ let dateFormatter = new Intl.DateTimeFormat("fr-FR", {
     timeZone: "UTC",
 })
 
+HTMLElement.prototype.pushAfterElement = function() {
+    currentPosition.insertAdjacentElement("afterend", this);
+    currentPosition = this;
+}
+
 /**
  * This function adds a plain text item to the list
  * @param {String} itemText The text to be placed in the new item
@@ -43,10 +48,6 @@ class Homework {
     get displayString() {
         return `[${this.subject.name}] ${this.description}`
     }
-} 
-
-let elements = {
-    homeworksList: document.querySelector("ul#homeworks-list")
 }
 
 let subjects = [
@@ -58,7 +59,7 @@ let subjects = [
     new Subject("Espagnol", "deeppink")
 ];
     
-let homeworks = Object.entries(
+let agenda = Object.entries(
     Object.groupBy([
         new Homework(0, 2, "2024-12-16", "Faire les exercices 103 et 105 de la page 27"),
         new Homework(1, 2, "2024-12-16", "Faire l'exercice 2 de la page V.I"),
@@ -72,7 +73,15 @@ let homeworks = Object.entries(
         .sort((a, b) => new Date(b[0].date) - new Date(a[0].date)
 );
 
-for (let [date, homework] of homeworks) {
-    console.log(date)
-    elements.homeworksList.addItem(dateFormatter.format(new Date(date)));
+let currentPosition = document.querySelector("h2#homeworks-heading")
+
+for (const [date, homeworks] of agenda) {
+    let dateHeading = document.createElement("h3");
+    dateHeading.innerText = dateFormatter.format(new Date(date));
+    dateHeading.pushAfterElement();
+    let homeworkList = document.createElement("ul");
+    homeworkList.pushAfterElement();
+    for (const homework of homeworks) {
+        homeworkList.addItem(homework.displayString);
+    }
 }
