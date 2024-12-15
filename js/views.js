@@ -12,24 +12,30 @@ class View {
     render() {
         this.renderer(mainElement);
     }
-
-    destroy() {
-        mainElement.innerHTML = "";
-    }
 }
 
 let mainView = new View(parentElement => {
-    parentElement.innerHTML = "<h1>Agenda</h1>\n<h2 id=\"homeworks-heading\">Devoirs</h2>";
-    currentPosition = document.querySelector("h2#homeworks-heading")
+    parentElement.innerHTML = "<h1>Agenda</h1>\n<h2>Devoirs</h2>";
 
     for (const [date, homeworks] of agenda) {
-        let dateHeading = document.createElement("h3");
-        dateHeading.innerText = dateFormatter.format(new Date(date));
-        dateHeading.pushAfterElement();
+        parentElement.innerHTML += `<h3>${dateFormatter.format(new Date(date))}</h3>`
         let homeworkList = document.createElement("ul");
-        homeworkList.pushAfterElement();
-        for (const homework of homeworks) {
-            homeworkList.addItem(`<a href="target.html">${homework.displayString}</a>`);
+        parentElement.appendChild(homeworkList);
+        homeworks.forEach(homework => {
+            let item = homeworkList.addItem(`<a href="target.html">${homework.displayString}</a>`, homework.id);
+            console.log(item)
+            item.addEventListener("click", event => {
+                event.preventDefault();
+                app.viewOptions = homework;
+                app.displayedView = homeworkDetails;
+            })
+        });
         }
     }
+);
+
+let homeworkDetails = new View(parentElement => {
+    let homework = app.viewOptions;
+    parentElement.innerHTML = "<h1>Agenda</h1>\n<h2>Devoirs</h2>";
+    parentElement.innerHTML += `<h3>${homework.description}</h3>`;
 });

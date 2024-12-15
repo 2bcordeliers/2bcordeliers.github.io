@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "terser js/tools.js js/data.js js/views.js js/script.js -o public/script.js --compress --mangle toplevel --mangle-props && cp css/style.css public/style.css"
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "html-minifier-terser": "^7.2.0",
+    "postcss": "^8.4.49",
     "terser": "^5.37.0"
   }
 }
