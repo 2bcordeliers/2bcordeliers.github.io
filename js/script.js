@@ -4,16 +4,12 @@ class App {
         this.viewOptions;
     }
 
-    renderView() {
-        this.currentView.render();
-    }
-
-    set displayedView(view) {
+    renderView(view, options) {
         this.currentView = view;
-        this.renderView();
+        this.currentView.render(options);
     }
 }
 
 let app = new App();
 
-app.renderView();
+app.renderView(mainView, {});
