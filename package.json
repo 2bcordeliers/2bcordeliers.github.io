@@ -1,0 +1,15 @@
+{
+  "name": "2bcordeliers.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "terser js/script.js -o js/script.min.js --compress --mangle toplevel --mangle-props"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "terser": "^5.37.0"
+  }
+}
