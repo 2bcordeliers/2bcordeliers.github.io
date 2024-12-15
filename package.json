@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "terser js/script.js -o public/script.js --compress --mangle toplevel --mangle-props && cp css/style.css public/style.css"
+    "build": "terser js/tools.js js/data.js js/views.js js/script.js -o public/script.js --compress --mangle toplevel --mangle-props && cp css/style.css public/style.css"
   },
   "keywords": [],
   "author": "",
