@@ -20,7 +20,9 @@ async function buildJS() {
     let options = {
         mangle: {
             toplevel: true,
-            properties: true
+            properties: {
+                reserved: ["dateStyle", "timeZone"]
+            }
         }
     }
 
