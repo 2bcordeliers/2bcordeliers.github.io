@@ -41,7 +41,7 @@ let subjects = [
     
 let agenda = Object.entries(
     Object.groupBy([
-        new Homework(4, 4, "2024-12-16", "Finir le texte de l'audioguide"),
+        new Homework(4, 4, "2024-12-18", "Finir le texte de l'audioguide"),
         new Homework(5, 1, "2024-12-17", "Faire l'introduction (optionnel)"),
         new Homework(6, 4, "2024-12-18", "Répondre aux questions I à III"),
         new Homework(7, 0, "2024-12-19", "Préparer le secret santa"),
