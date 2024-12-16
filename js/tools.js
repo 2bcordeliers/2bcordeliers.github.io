@@ -1,4 +1,4 @@
 let dateFormatter = new Intl.DateTimeFormat("fr-FR", {
-    dateStyle: "full",
+    dateStyle: "long",
     timeZone: "UTC",
 })
