@@ -41,14 +41,13 @@ let subjects = [
     
 let agenda = Object.entries(
     Object.groupBy([
-        new Homework(0, 2, "2024-12-16", "Faire les exercices 103 et 105 de la page 27"),
-        new Homework(1, 2, "2024-12-16", "Faire l'exercice 2 de la page V.I"),
-        new Homework(2, 2, "2024-12-16", "Faire l'exercice 4 de la fiche sur les fonctions"),
-        new Homework(3, 4, "2024-12-16", "Finir le diaporama"),
         new Homework(4, 4, "2024-12-16", "Finir le texte de l'audioguide"),
         new Homework(5, 1, "2024-12-17", "Faire l'introduction (optionnel)"),
-        new Homework(6, 2, "2024-12-18", "Répondre aux questions I à III"),
-        new Homework(7, 0, "2024-12-20", "Préparer le secret santa"),
+        new Homework(6, 4, "2024-12-18", "Répondre aux questions I à III"),
+        new Homework(7, 0, "2024-12-19", "Préparer le secret santa"),
+        new Homework(8, 2, "2024-12-18", "Finir l'exercice 3 fiche V.I"),
+        new Homework(9, 2, "2024-12-18", "Faire les exercices 104 et 106"),
+        
     ], ({ date }) => date))
         .sort((a, b) => new Date(b[0].date) - new Date(a[0].date)
 );
