@@ -1,10 +1,12 @@
 class Subject {
     /**
      * This function creates a subject
+     * @param {Number} id Identifier of the Subject
      * @param {String} name Name of the subject
      * @param {String} color Color to be displayed with the subject
      */
-    constructor(name, color) {
+    constructor(id, name, color) {
+        this.id = id;
         this.name = name;
         this.color = color;
     }
@@ -21,6 +23,7 @@ class Homework {
     constructor(id, subject_id, date, description) {
         this.id = id;
         this.subject = subjects[subject_id];
+        this.subject_id = subject_id;
         this.date = date;
         this.description = description;
     }
@@ -31,23 +34,25 @@ class Homework {
 }
 
 let subjects = [
-    new Subject("Vie de classe", "red"),
-    new Subject("Français", "antiquewhite"),
-    new Subject("Maths", "deeppink"),
-    new Subject("Histoire-Géographie", "antiquewhite"),
-    new Subject("Anglais", "deeppink"),
-    new Subject("Espagnol", "deeppink")
+    new Subject(0, "Vie de classe", "red"),
+    new Subject(1, "Français", "antiquewhite"),
+    new Subject(2, "Maths", "deeppink"),
+    new Subject(3, "Histoire-Géographie", "antiquewhite"),
+    new Subject(4, "Anglais", "deeppink"),
+    new Subject(5, "Espagnol", "deeppink")
 ];
     
 let agenda = Object.entries(
-    Object.groupBy([
-        new Homework(4, 4, "2024-12-18", "Finir le texte de l'audioguide"),
-        new Homework(5, 1, "2024-12-17", "Faire l'introduction (optionnel)"),
-        new Homework(6, 4, "2024-12-18", "Répondre aux questions I à III"),
-        new Homework(7, 0, "2024-12-19", "Préparer le secret santa"),
-        new Homework(8, 2, "2024-12-18", "Finir l'exercice 3 fiche V.I"),
-        new Homework(9, 2, "2024-12-18", "Faire les exercices 104 et 106"),
-        
-    ], ({ date }) => date))
-        .sort((a, b) => new Date(b[0].date) - new Date(a[0].date)
+    Object.groupBy(
+        [
+            new Homework(4, 4, "2024-12-18", "Finir le texte de l'audioguide"),
+            new Homework(6, 5, "2024-12-18", "Répondre aux questions I à III"),
+            new Homework(7, 0, "2024-12-19", "Préparer le secret santa"),
+            new Homework(8, 2, "2024-12-18", "Finir l'exercice 3 fiche V.I"),
+            new Homework(9, 2, "2024-12-18", "Faire les exercices 104 et 106"),
+        ]
+            .sort((a, b) => a.subject_id - b.subject_id),
+        ({ date }) => date
+    ))
+        .sort((a, b) => new Date(a[0]) - new Date(b[0])
 );

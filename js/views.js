@@ -17,7 +17,7 @@ class View {
 let mainView = new View(_ => {
     return `<h1>Agenda</h1>\n<h2>Devoirs</h2>\n
     ${agenda.map(([date, homeworks]) => {
-        return `<h3>${dateFormatter.format(new Date(date))}</h3>\n<ul>
+        return `<h3>${displayDate(date)}</h3>\n<ul>
         ${homeworks.map(homework => {
             return `<li id="${homework.id}">${homework.displayString}</li>`
         }).join("\n")}
