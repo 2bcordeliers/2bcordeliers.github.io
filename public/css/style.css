@@ -1,0 +1,53 @@
+body, h1, h2, ul, li, a {
+    all: unset;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    font-family: system-ui;
+}
+
+h1, h2, li {
+    display: block;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h1, h2 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+main {
+    width: 100%;
+    max-width: 700px;
+    padding-inline: 2rem;
+}
+
+li {
+    margin-bottom: .5rem;
+}
+
+a {
+    color: royalblue;
+    text-decoration: none;
+}
+
+a::after {
+    content: " \2192";
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

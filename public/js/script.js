@@ -41,7 +41,7 @@ let subjects = [
     new Subject(4, "Anglais", "deeppink"),
     new Subject(5, "Espagnol", "deeppink")
 ];
-    
+
 let agenda = Object.entries(
     Object.groupBy(
         [
@@ -52,7 +52,25 @@ let agenda = Object.entries(
             new Homework(9, 2, "2024-12-18", "Faire les exercices 104 et 106"),
         ]
             .sort((a, b) => a.subject_id - b.subject_id),
-        ({ date }) => date
+        ({date}) => date
     ))
-        .sort((a, b) => new Date(a[0]) - new Date(b[0])
-);
+    .sort((a, b) => new Date(a[0]) - new Date(b[0])
+    );
+
+/*
+class App {
+    constructor() {
+        this.currentView = mainView;
+        this.viewOptions;
+    }
+
+    renderView(view, options) {
+        this.currentView = view;
+        this.currentView.render(options);
+    }
+}
+
+let app = new App();
+
+app.renderView(mainView, {});
+*/
