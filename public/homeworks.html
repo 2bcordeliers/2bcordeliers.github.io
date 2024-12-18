@@ -18,16 +18,19 @@
 </main>
 <script src="js/data.js"></script>
 <script>
-    homeworks.forEach(([date, dailyHomeworks]) => {
+    Map.groupBy(homeworks, homework => homework[0].split("-")[0]).forEach((dailyHomeworks, date) => {
         let dateHeading = document.createElement("h2");
-        dateHeading.innerText = displayDate(date);
+        dateHeading.innerText = displayDate(new Date(dates.get(date)));
         document.querySelector("main").appendChild(dateHeading);
         let homeworkList = document.createElement("ul");
         document.querySelector("main").appendChild(homeworkList);
-        dailyHomeworks.forEach(homework => {
+        dailyHomeworks.forEach(([id, homework]) => {
             let listItem = document.createElement("li");
-            listItem.innerText = homework[2];
+            let link = document.createElement("a");
+            link.href = "homework-details.html?id=" + id;
+            link.innerText = `${subjects.get(id.split("-")[1])} - ${homework}`;
             homeworkList.appendChild(listItem);
+            listItem.appendChild(link);
         })
     })
 </script>

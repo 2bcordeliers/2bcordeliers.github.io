@@ -14,12 +14,18 @@
 </head>
 <body>
 <main>
-    <h1>2B Cordeliers</h1>
-    <h2>Liens</h2>
-    <ul>
-        <li><a href="javascript:void(0)">Contrôles</a></li>
-        <li><a href="homeworks.html">Devoirs à faire</a></li>
-    </ul>
+    <h1>Détails du devoir</h1>
 </main>
+<script src="js/data.js"></script>
+<script>
+    let params = new URLSearchParams(location.search);
+    let id = params.get("id");
+    let subjectHeading = document.createElement("h2");
+    subjectHeading.innerText = subjects.get(id.split("-")[1]);
+    document.querySelector("main").appendChild(subjectHeading);
+    let description = document.createElement("p");
+    description.innerText = homeworks.get(id);
+    document.querySelector("main").appendChild(description);
+</script>
 </body>
 </html>
