@@ -24,8 +24,19 @@
     subjectHeading.innerText = subjects.get(id.split("-")[1]);
     document.querySelector("main").appendChild(subjectHeading);
     let description = document.createElement("p");
-    description.innerText = homeworks.get(id);
+    description.innerText = homeworks.get(id).description;
     document.querySelector("main").appendChild(description);
+    if (homeworks.get(id).links.length !== 0) {
+        let heading = document.createElement("h2");
+        heading.innerText = "Liens";
+        document.querySelector("main").appendChild(heading);
+    }
+    homeworks.get(id).links.forEach(([name, target]) => {
+        let link = document.createElement("a");
+        link.href = target;
+        link.innerText = name;
+        document.querySelector("main").appendChild(link);
+    })
 </script>
 </body>
 </html>

@@ -28,7 +28,7 @@
             let listItem = document.createElement("li");
             let link = document.createElement("a");
             link.href = "homework-details.html?id=" + id;
-            link.innerText = `${subjects.get(id.split("-")[1])} - ${homework}`;
+            link.innerText = `${subjects.get(id.split("-")[1])} - ${homework.description}`;
             homeworkList.appendChild(listItem);
             listItem.appendChild(link);
         })

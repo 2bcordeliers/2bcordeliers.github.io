@@ -7,18 +7,61 @@ function displayDate(date) {
     return dateFormatter.format(new Date(date));
 }
 
+class Homework {
+    constructor (description, links) {
+        this.description = description
+        this.links = links
+    }
+}
+
 /**
  * Map containing all homeworks
- * @type {Map<string, string>}
+ * @type {Map<String, Homework>}
  */
 let homeworks = new Map(
     [
-        ["965f-82-1a", "Revoir les définitions de la sélection naturelle et de la dérive génétique"],
-        ["965f-82-cf", "Apporter le manuel"],
-        ["36a2-23-46", "Savoir présenter le poème"],
-        ["36a2-23-83", "Apprendre le vocabulaire de la séance 1"],
-        ["36a2-23-00", "Apprendre le poème jusqu'à emplearlas"],
-        ["b750-d3-bc", "Faire la fiche \"The Natives Today\""]
+        [
+            "965f-82-1a",
+            new Homework (
+                "Revoir les définitions de la sélection naturelle et de la dérive génétique",
+                []
+            )
+        ],
+        [
+            "965f-82-cf",
+            new Homework(
+                "Apporter le manuel", 
+                []
+            )
+        ],
+        [
+            "36a2-23-46", 
+            new Homework(
+                "Savoir présenter le poème", 
+                []
+            )
+        ],
+        [
+            "36a2-23-83", 
+            new Homework(
+                "Apprendre le vocabulaire de la séance 1",
+                []
+            )
+        ],
+        [
+            "36a2-23-00", 
+            new Homework(
+                "Apprendre le poème jusqu'à emplearlas",
+                []
+            )
+        ],
+        [
+            "b750-d3-bc", 
+            new Homework(
+                "Faire la fiche \"The Natives Today\"",
+                [["Digipad", "https://digipad.app/p/435274/4be30fe6be52f"]]
+            )
+        ]
     ]
 );
 
