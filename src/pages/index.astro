@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("revisions");
+---
+
+<BaseLayout pageTitle="Devoirs">
+    <h1>Révisions</h1>
+    <ul>
+        {posts.map(post => <li><a href={"/revisions/" + post.slug}>{post.data.title}</a></li>)}
+    </ul>
+</BaseLayout>

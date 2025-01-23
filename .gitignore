@@ -1,5 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build output & types generation
+dist/
+.astro/
+
+# Logs
+
+# IDEs
 .idea/
 .vscode/
 
-node_modules/
-dist/
+# System files
+.DS_Store
