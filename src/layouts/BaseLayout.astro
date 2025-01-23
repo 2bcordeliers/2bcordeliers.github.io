@@ -1,5 +1,9 @@
 ---
+import { version } from "package.json"
+
 const props = Astro.props
+const date = new Intl.DateTimeFormat("fr", { dateStyle: "long" })
+    .format(Date.now());
 ---
 
 <html lang="fr">
@@ -14,5 +18,6 @@ const props = Astro.props
     </head>
     <body>
         <slot />
+        <p><i>Version {version} - {date}</i></p>
     </body>
 </html>
