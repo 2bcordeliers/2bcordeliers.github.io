@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const homeworks = await getCollection("homeworks");
+---
+
+<BaseLayout pageTitle="Devoirs">
+    <h1>Devoirs à faire</h1>
+    <ul>
+        {homeworks.map(homework => <li><a href={"homeworks/" + homework.slug}>{homework.data.title}</a></li>)}
+    </ul>
+</BaseLayout>

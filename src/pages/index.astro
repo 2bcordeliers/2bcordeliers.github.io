@@ -1,13 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-
-const posts = await getCollection("revisions");
 ---
 
-<BaseLayout pageTitle="Devoirs">
-    <h1>Révisions</h1>
+<BaseLayout pageTitle="2B Cordeliers">
+    <h1>2B Cordeliers</h1>
     <ul>
-        {posts.map(post => <li><a href={"/revisions/" + post.slug}>{post.data.title}</a></li>)}
+        <li><a href="/homeworks">Devoirs à faire</a></li>
     </ul>
 </BaseLayout>

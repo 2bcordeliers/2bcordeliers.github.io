@@ -1,12 +1,27 @@
-import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
-const revisions = defineCollection({
+const homeworks = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    author: z.string(),
+    subject: z.enum([
+      "Vie de classe",
+      "Français",
+      "Maths",
+      "Histoire-Géo",
+      "Anglais",
+      "Physique-Chimie",
+    ]),
+    date: z.date(),
+    lessons: z.array(z.string()).optional(),
   }),
 });
 
-export const collections = { revisions };
+const lessons = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = { homeworks, lessons };
