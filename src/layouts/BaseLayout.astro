@@ -10,10 +10,15 @@ const date = new Intl.DateTimeFormat("fr", { dateStyle: "long" })
     <head>
         <meta charset="utf-8" />
         <meta name="author" content="2bcordeliers" />
-        <meta name="description" content="">
+        <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex" />
+        <meta property="og:title" content="2B Cordeliers" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://2bcordeliers.github.io/">
+        <meta property="og:image" content="https://2bcordeliers.github.io/media/presentation-card.png">
         <meta name="generator" content={Astro.generator} />
+        <link rel="icon" href="data:," />
         <title>{props.pageTitle}</title>
     </head>
     <body>
