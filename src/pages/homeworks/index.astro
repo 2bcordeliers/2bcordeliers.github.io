@@ -20,7 +20,7 @@ const groupedHomeworks = Map.groupBy(homeworksCollection, (homework) =>
             <ul>
               {homeworks.map((homework) => (
                 <li>
-                  <a href={"homeworks/" + homework.slug}>
+                  <a href={"/homeworks/" + homework.slug}>
                     {homework.data.title}
                   </a>
                 </li>
