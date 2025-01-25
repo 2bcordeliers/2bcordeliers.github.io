@@ -6,31 +6,57 @@ import { getCollection } from "astro:content";
 
 const dateFormatter = new Intl.DateTimeFormat("fr", { dateStyle: "full" });
 const homeworksCollection = await getCollection("homeworks");
-const groupedHomeworks = Map.groupBy(homeworksCollection, (homework) =>
-  dateFormatter.format(homework.data.date)
-);
+const groupedHomeworks = homeworksCollection.reduce((map, homework) => {
+  const date = dateFormatter.format(homework.data.date);
+  const subject = homework.data.subject;
+  if (!map.has(date)) {
+    map.set(
+      date,
+      new Map<string, Array<(typeof homeworksCollection)[number]>>()
+    );
+  }
+
+  if (!map.get(date)!.has(subject)) {
+    map.get(date)!.set(subject, []);
+  }
+
+  map.get(date)!.get(subject)!.push(homework);
+
+  return map;
+}, new Map<string, Map<string, Array<(typeof homeworksCollection)[number]>>>());
+console.log(groupedHomeworks);
 ---
 
 <BaseLayout pageTitle="Devoirs">
   <h1>Devoirs à faire</h1>
-    {
-      Array.from(groupedHomeworks).map(([date, homeworks]) => {
-        return (
+  {
+    Array.from(groupedHomeworks).map(([date, dateHomeworks]) => {
+      return (
+        <>
           <h2>{date}</h2>
           <ListGroup>
-            {homeworks.map((homework) => (
-              <ListItem href={"/homeworks/" + homework.slug}>
-                {homework.data.title}
-              </ListItem>
-            ))}
+            {Array.from(dateHomeworks).map(([subject, subjectHomeworks]) => {
+              return (
+                <>
+                  <ListItem header={true}>{subject}</ListItem>
+                  {subjectHomeworks.map((homework) => {
+                    let target = "/homeworks/" + homework.slug;
+                    return (
+                      <ListItem href={target}>{homework.data.title}</ListItem>
+                    );
+                  })}
+                </>
+              );
+            })}
           </ListGroup>
-        );
-      })
-    }
+        </>
+      );
+    })
+  }
 </BaseLayout>
 
 <style>
-  h2 {
-    text-transform: capitalize;
+  h2::first-letter {
+    text-transform: uppercase;
   }
 </style>
