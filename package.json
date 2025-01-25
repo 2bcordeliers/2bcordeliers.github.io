@@ -1,6 +1,6 @@
 {
   "name": "2bcordeliers.github.io",
-  "version": "0.3.0-0",
+  "version": "0.3.0-1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
