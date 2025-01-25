@@ -1,0 +1,51 @@
+---
+import ListGroup from "@/components/ListGroup.astro";
+import ListItem from "@/components/ListItem.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const dateFormatter = new Intl.DateTimeFormat("fr", { dateStyle: "full" });
+const tests = await getCollection("tests");
+const sortedTests = tests.sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
+);
+const groupedTests = sortedTests.reduce((map, test) => {
+  const date = dateFormatter.format(test.data.date);
+  if (!map.has(date)) {
+    map.set(date, []);
+  }
+
+  map.get(date)!.push(test);
+
+  return map;
+}, new Map<string, Array<(typeof tests)[number]>>());
+---
+
+<BaseLayout pageTitle="2B Cordeliers - Contrôles">
+  <h1>Contrôles</h1>
+  {
+    Array.from(groupedTests).map(([date, dateTests]) => {
+      return (
+        <>
+          <h2>{date}</h2>
+          <ListGroup>
+            {dateTests.map((test) => {
+              let target = "/tests/" + test.slug;
+              return (
+                <ListItem href={target}>
+                  {test.data.subject} - {test.data.title}
+                </ListItem>
+              );
+            })}
+          </ListGroup>
+        </>
+      );
+    })
+  }
+</BaseLayout>
+
+<style>
+  h2::first-letter {
+    text-transform: uppercase;
+  }
+</style>

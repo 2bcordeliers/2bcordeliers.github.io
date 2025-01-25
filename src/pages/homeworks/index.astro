@@ -5,15 +5,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const dateFormatter = new Intl.DateTimeFormat("fr", { dateStyle: "full" });
-const homeworksCollection = await getCollection("homeworks");
-const groupedHomeworks = homeworksCollection.reduce((map, homework) => {
+const homeworks = await getCollection("homeworks");
+const sortedHomeworks = homeworks.sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
+);
+const groupedHomeworks = sortedHomeworks.reduce((map, homework) => {
   const date = dateFormatter.format(homework.data.date);
   const subject = homework.data.subject;
   if (!map.has(date)) {
-    map.set(
-      date,
-      new Map<string, Array<(typeof homeworksCollection)[number]>>()
-    );
+    map.set(date, new Map<string, Array<(typeof homeworks)[number]>>());
   }
 
   if (!map.get(date)!.has(subject)) {
@@ -23,11 +23,11 @@ const groupedHomeworks = homeworksCollection.reduce((map, homework) => {
   map.get(date)!.get(subject)!.push(homework);
 
   return map;
-}, new Map<string, Map<string, Array<(typeof homeworksCollection)[number]>>>());
+}, new Map<string, Map<string, Array<(typeof homeworks)[number]>>>());
 console.log(groupedHomeworks);
 ---
 
-<BaseLayout pageTitle="Devoirs">
+<BaseLayout pageTitle="2B Cordeliers - Devoirs à faire">
   <h1>Devoirs à faire</h1>
   {
     Array.from(groupedHomeworks).map(([date, dateHomeworks]) => {

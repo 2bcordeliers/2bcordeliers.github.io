@@ -3,21 +3,21 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const homeworks = await getCollection("homeworks");
-  return homeworks.map((homework) => ({
-    params: { slug: homework.slug },
-    props: homework,
+  const tests = await getCollection("tests");
+  return tests.map((test) => ({
+    params: { slug: test.slug },
+    props: test,
   }));
 }
 
 type Props = CollectionEntry<"homeworks">;
 
-const homework = Astro.props;
-const { Content } = await homework.render();
+const test = Astro.props;
+const { Content } = await test.render();
 ---
 
 <BaseLayout pageTitle="2B Cordeliers - Devoir">
-  <h1>{homework.data.title}</h1>
-  <h2>{homework.data.subject}</h2>
+  <h1>{test.data.title}</h1>
+  <h2>{test.data.subject}</h2>
   <Content />
 </BaseLayout>
