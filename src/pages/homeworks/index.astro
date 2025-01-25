@@ -1,4 +1,6 @@
 ---
+import ListGroup from "@/components/ListGroup.astro";
+import ListItem from "@/components/ListItem.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
@@ -11,24 +13,24 @@ const groupedHomeworks = Map.groupBy(homeworksCollection, (homework) =>
 
 <BaseLayout pageTitle="Devoirs">
   <h1>Devoirs à faire</h1>
-  <ul>
     {
       Array.from(groupedHomeworks).map(([date, homeworks]) => {
         return (
-          <li>
-            {date}
-            <ul>
-              {homeworks.map((homework) => (
-                <li>
-                  <a href={"/homeworks/" + homework.slug}>
-                    {homework.data.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
+          <h2>{date}</h2>
+          <ListGroup>
+            {homeworks.map((homework) => (
+              <ListItem href={"/homeworks/" + homework.slug}>
+                {homework.data.title}
+              </ListItem>
+            ))}
+          </ListGroup>
         );
       })
     }
-  </ul>
 </BaseLayout>
+
+<style>
+  h2 {
+    text-transform: capitalize;
+  }
+</style>
