@@ -5,44 +5,42 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const dateFormatter = new Intl.DateTimeFormat("fr", { dateStyle: "full" });
-const homeworks = await getCollection("homeworks");
-const sortedHomeworks = homeworks.sort(
+const homework = await getCollection("homework");
+const sortedHomework = homework.sort(
   (a, b) => a.data.date.getTime() - b.data.date.getTime()
 );
-const groupedHomeworks = sortedHomeworks.reduce((map, homework) => {
-  const date = dateFormatter.format(homework.data.date);
-  const subject = homework.data.subject;
+const groupedHomework = sortedHomework.reduce((map, item) => {
+  const date = dateFormatter.format(item.data.date);
+  const subject = item.data.subject;
   if (!map.has(date)) {
-    map.set(date, new Map<string, Array<(typeof homeworks)[number]>>());
+    map.set(date, new Map<string, Array<(typeof homework)[number]>>());
   }
 
   if (!map.get(date)!.has(subject)) {
     map.get(date)!.set(subject, []);
   }
 
-  map.get(date)!.get(subject)!.push(homework);
+  map.get(date)!.get(subject)!.push(item);
 
   return map;
-}, new Map<string, Map<string, Array<(typeof homeworks)[number]>>>());
+}, new Map<string, Map<string, Array<(typeof homework)[number]>>>());
 ---
 
 <BaseLayout pageTitle="2B Cordeliers - Devoirs à faire">
   <h1>Devoirs à faire</h1>
   {
-    Array.from(groupedHomeworks).map(([date, dateHomeworks]) => {
+    Array.from(groupedHomework).map(([date, dateHomework]) => {
       return (
         <>
           <h2>{date}</h2>
           <ListGroup>
-            {Array.from(dateHomeworks).map(([subject, subjectHomeworks]) => {
+            {Array.from(dateHomework).map(([subject, subjectHomework]) => {
               return (
                 <>
                   <ListItem header={true}>{subject}</ListItem>
-                  {subjectHomeworks.map((homework) => {
-                    let target = "/homeworks/" + homework.slug;
-                    return (
-                      <ListItem href={target}>{homework.data.title}</ListItem>
-                    );
+                  {subjectHomework.map((item) => {
+                    let target = "/homework/" + item.slug;
+                    return <ListItem href={target}>{item.data.title}</ListItem>;
                   })}
                 </>
               );

@@ -11,7 +11,7 @@ const subjects = z.enum([
   "SNT",
 ]);
 
-const homeworks = defineCollection({
+const homework = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
@@ -38,4 +38,4 @@ const tests = defineCollection({
   }),
 });
 
-export const collections = { homeworks, lessons, tests };
+export const collections = { homework, lessons, tests };

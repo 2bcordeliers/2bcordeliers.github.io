@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const homework = await getCollection("homework");
+  return homework.map((item) => ({
+    params: { slug: item.slug },
+    props: item,
+  }));
+}
+
+type Props = CollectionEntry<"homework">;
+
+const item = Astro.props;
+const { Content } = await item.render();
+---
+
+<BaseLayout pageTitle="2B Cordeliers - Devoir">
+  <h1>{item.data.title}</h1>
+  <h2>{item.data.subject}</h2>
+  <Content />
+</BaseLayout>
