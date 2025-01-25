@@ -11,6 +11,8 @@ const homeworks = defineCollection({
       "Histoire-Géo",
       "Anglais",
       "Physique-Chimie",
+      "SVT",
+      "SNT",
     ]),
     date: z.date(),
     lessons: z.array(z.string()).optional(),
