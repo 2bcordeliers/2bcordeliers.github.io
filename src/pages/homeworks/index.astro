@@ -2,12 +2,33 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const homeworks = await getCollection("homeworks");
+const dateFormatter = new Intl.DateTimeFormat("fr", { dateStyle: "full" });
+const homeworksCollection = await getCollection("homeworks");
+const groupedHomeworks = Map.groupBy(homeworksCollection, (homework) =>
+  dateFormatter.format(homework.data.date)
+);
 ---
 
 <BaseLayout pageTitle="Devoirs">
-    <h1>Devoirs à faire</h1>
-    <ul>
-        {homeworks.map(homework => <li><a href={"homeworks/" + homework.slug}>{homework.data.title}</a></li>)}
-    </ul>
+  <h1>Devoirs à faire</h1>
+  <ul>
+    {
+      Array.from(groupedHomeworks).map(([date, homeworks]) => {
+        return (
+          <li>
+            {date}
+            <ul>
+              {homeworks.map((homework) => (
+                <li>
+                  <a href={"homeworks/" + homework.slug}>
+                    {homework.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        );
+      })
+    }
+  </ul>
 </BaseLayout>

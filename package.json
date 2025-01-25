@@ -1,6 +1,6 @@
 {
   "name": "2bcordeliers.github.io",
-  "version": "0.2.0-alpha",
+  "version": "0.2.0-rc.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,5 +9,11 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "astro": "^5.1.9"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.21.0"
   }
 }

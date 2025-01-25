@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "lib": ["ES2024"],
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "extends": "astro/tsconfigs/base"
+  "extends": "astro/tsconfigs/base",
 }
