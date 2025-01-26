@@ -16,7 +16,7 @@ const item = Astro.props;
 const { Content } = await item.render();
 ---
 
-<BaseLayout pageTitle="2B Cordeliers - Devoir">
+<BaseLayout pageTitle={"2B Cordeliers - " + item.data.title}>
   <h1>{item.data.title}</h1>
   <h2>{item.data.subject}</h2>
   <Content />

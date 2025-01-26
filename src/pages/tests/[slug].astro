@@ -10,13 +10,13 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = CollectionEntry<"homeworks">;
+type Props = CollectionEntry<"homework">;
 
 const test = Astro.props;
 const { Content } = await test.render();
 ---
 
-<BaseLayout pageTitle="2B Cordeliers - Devoir">
+<BaseLayout pageTitle={"2B Cordeliers - " + test.data.title}>
   <h1>{test.data.title}</h1>
   <h2>{test.data.subject}</h2>
   <Content />

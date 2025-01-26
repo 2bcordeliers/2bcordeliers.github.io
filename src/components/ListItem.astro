@@ -9,7 +9,7 @@ const { href = "", header = false } = Astro.props;
 
 <li class={header ? "header" : ""}>
   {
-    href == "" ? (
+    href === "" ? (
       <slot />
     ) : (
       <a href={href}>
