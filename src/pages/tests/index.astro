@@ -32,9 +32,10 @@ const groupedTests = sortedTests.reduce((map, test) => {
             {dateTests.map((test) => {
               let target = "/tests/" + test.slug;
               return (
-                <ListItem href={target}>
-                  {test.data.subject} - {test.data.title}
-                </ListItem>
+                <ListItem
+                  text={`${test.data.subject} - ${test.data.title}`}
+                  href={target}
+                ></ListItem>
               );
             })}
           </ListGroup>

@@ -2,18 +2,19 @@
 interface Props {
   href?: string;
   header?: boolean;
+  text: string;
 }
 
-const { href = "", header = false } = Astro.props;
+const { href = "", header = false, text } = Astro.props;
 ---
 
 <li class={header ? "header" : ""}>
   {
     href === "" ? (
-      <slot />
+      <span>{text}</span>
     ) : (
       <a href={href}>
-        <slot />
+        <span>{text}</span>
       </a>
     )
   }
