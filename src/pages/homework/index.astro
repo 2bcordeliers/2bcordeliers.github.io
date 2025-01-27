@@ -37,10 +37,10 @@ const groupedHomework = sortedHomework.reduce((map, item) => {
             {Array.from(dateHomework).map(([subject, subjectHomework]) => {
               return (
                 <>
-                  <ListItem header={true}>{subject}</ListItem>
+                  <ListItem header={true} text={subject} />
                   {subjectHomework.map((item) => {
                     let target = "/homework/" + item.slug;
-                    return <ListItem href={target}>{item.data.title}</ListItem>;
+                    return <ListItem text={item.data.title} href={target} />;
                   })}
                 </>
               );
