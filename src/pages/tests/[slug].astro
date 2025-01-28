@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = CollectionEntry<"homework">;
+type Props = CollectionEntry<"tests">;
 
 const test = Astro.props;
 const { Content } = await test.render();
@@ -19,5 +19,19 @@ const { Content } = await test.render();
 <BaseLayout pageTitle={"2B Cordeliers - " + test.data.title}>
   <h1>{test.data.title}</h1>
   <h2>{test.data.subject}</h2>
+  {
+    !test.data.finished && (
+      <div class="warning">⚠ La page n'est pas encore terminée</div>
+    )
+  }
   <Content />
 </BaseLayout>
+
+<style>
+  .warning {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    background-color: #f1c40f;
+    color: white;
+  }
+</style>
