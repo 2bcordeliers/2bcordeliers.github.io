@@ -9,6 +9,9 @@ const subjects = z.enum([
   "Physique-Chimie",
   "SVT",
   "SNT",
+  "Euro",
+  "DNL",
+  "Cambridge",
 ]);
 
 const homework = defineCollection({
@@ -21,21 +24,14 @@ const homework = defineCollection({
   }),
 });
 
-const lessons = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-  }),
-});
-
 const tests = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
     subject: subjects,
     date: z.date(),
-    lessons: z.array(reference("lessons")).optional(),
+    finished: z.boolean().default(false),
   }),
 });
 
-export const collections = { homework, lessons, tests };
+export const collections = { homework, tests };
