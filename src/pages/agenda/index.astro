@@ -1,0 +1,58 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import ListGroup from "@/components/ListGroup.astro";
+import ListItem from "@/components/ListItem.astro";
+import { getCollection } from "astro:content";
+
+const monthFormatter = new Intl.DateTimeFormat("fr", {
+  month: "long",
+  year: "numeric",
+});
+const dateFormatter = new Intl.DateTimeFormat("fr", {
+  weekday: "long",
+  day: "numeric",
+});
+const agenda = await getCollection("agenda");
+const sortedAgenda = agenda.sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
+);
+const groupedAgenda = sortedAgenda.reduce((map, agenda) => {
+  const date = monthFormatter.format(agenda.data.date);
+  if (!map.has(date)) {
+    map.set(date, []);
+  }
+
+  map.get(date)!.push(agenda);
+
+  return map;
+}, new Map<string, Array<(typeof agenda)[number]>>());
+---
+
+<BaseLayout pageTitle="2B Cordeliers - Agenda">
+  <h1>Agenda</h1>
+  {
+    Array.from(groupedAgenda).map(([month, monthAgenda]) => {
+      return (
+        <>
+          <h2>{month}</h2>
+          <ListGroup>
+            {monthAgenda.map(({ data }) => {
+              return (
+                <ListItem
+                  text={`${dateFormatter.format(data.date)} - ${data.title}`}
+                />
+              );
+            })}
+          </ListGroup>
+        </>
+      );
+    })
+  }
+</BaseLayout>
+
+<style>
+  h2::first-letter {
+    text-transform: uppercase;
+  }
+</style>
