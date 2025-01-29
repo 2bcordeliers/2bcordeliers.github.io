@@ -9,6 +9,7 @@ const subjects = z.enum([
   "Physique-Chimie",
   "SVT",
   "SNT",
+  "Sport",
   "Euro",
   "DNL",
   "Cambridge",
@@ -30,7 +31,6 @@ const homework = defineCollection({
     title: z.string(),
     subject: subjects,
     date: z.date(),
-    lessons: z.array(z.string()).optional(),
   }),
 });
 
@@ -42,4 +42,4 @@ const agenda = defineCollection({
   }),
 });
 
-export const collections = { homework, tests };
+export const collections = { homework, tests, agenda };
