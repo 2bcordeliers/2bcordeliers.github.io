@@ -6,6 +6,7 @@ const subjects = z.enum([
   "Maths",
   "Histoire-Géo",
   "Anglais",
+  "Espagnol",
   "Physique-Chimie",
   "SVT",
   "SNT",
