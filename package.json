@@ -8,7 +8,7 @@
   },
   "license": "GPL-3.0-only",
   "dependencies": {
-    "astro": "^5.1.10",
+    "astro": "^5.2.0",
     "katex": "^0.16.21",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
