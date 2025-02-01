@@ -1,4 +1,4 @@
-import { defineCollection, reference, z } from "astro:content";
+import { defineCollection, z } from "astro:content";
 
 const subjects = z.enum([
   "Vie de classe",
@@ -11,10 +11,14 @@ const subjects = z.enum([
   "SVT",
   "SNT",
   "Sport",
+  "AP Maths",
+  "AP Français",
   "Euro",
   "DNL",
   "Cambridge",
 ]);
+
+const groups = z.enum(["Groupe 1", "Groupe 2"]);
 
 const tests = defineCollection({
   type: "content",
@@ -32,6 +36,7 @@ const homework = defineCollection({
     title: z.string(),
     subject: subjects,
     date: z.date(),
+    group: groups.optional(),
   }),
 });
 

@@ -11,7 +11,8 @@ const sortedHomework = homework.sort(
 );
 const groupedHomework = sortedHomework.reduce((map, item) => {
   const date = dateFormatter.format(item.data.date);
-  const subject = item.data.subject;
+  const subject =
+    item.data.subject + (item.data.group ? ` - ${item.data.group}` : "");
   if (!map.has(date)) {
     map.set(date, new Map<string, Array<(typeof homework)[number]>>());
   }
